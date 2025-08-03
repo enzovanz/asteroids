@@ -1,4 +1,5 @@
 import pygame
+import sys
 from constants import *
 from player import Player
 from asteroid import Asteroid
@@ -32,6 +33,10 @@ def main():
             object.draw(screen)
         for object in updatable:
             object.update(dt)
+        for object in asteroids:
+            if object.check_collision(player):
+                print("Game Over")
+                sys.exit()
         
         pygame.display.flip()
         dt = clock.tick(60) / 1000
